@@ -1,0 +1,50 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "eyetracker"
+dynamic = ["version"]
+description = "Look at a monitor and the cursor and keyboard focus follow. Webcam-based, offline, Mac first."
+readme = "README.md"
+license = "MIT"
+authors = [{ name = "kevinsbarski" }]
+requires-python = ">=3.12,<3.14"
+dependencies = [
+  "numpy>=1.26",
+  "opencv-python-headless>=4.10",
+  "PySide6-Essentials>=6.7",
+  "platformdirs>=4.2",
+  "pyobjc-framework-Quartz>=10.3; sys_platform == 'darwin'",
+  "pyobjc-framework-Cocoa>=10.3; sys_platform == 'darwin'",
+  "pyobjc-framework-ApplicationServices>=10.3; sys_platform == 'darwin'",
+  "pyobjc-framework-AVFoundation>=10.3; sys_platform == 'darwin'",
+]
+
+[project.scripts]
+eyetracker = "eyetracker.app:main"
+
+[dependency-groups]
+dev = ["pytest>=8.2", "ruff>=0.6"]
+
+[tool.hatch.version]
+path = "src/eyetracker/__init__.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/eyetracker"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
+
+[tool.ruff.lint.flake8-bugbear]
+extend-immutable-calls = ["eyetracker.config.Tuning"]
+
+[tool.ruff.format]
+exclude = ["docs/**"]

@@ -2,6 +2,8 @@
 
 Look at a monitor and your cursor and keyboard focus move there. No clicking, no reaching for the mouse.
 
+![Animation: a webcam tracks a person's head and eyes; as they turn towards each of three screens, the cursor and keyboard focus jump to that screen](docs/demo/demo.gif)
+
 It uses the webcam your Mac already has and runs entirely on your machine: no account, no cloud,
 no network at all once it is set up.
 
